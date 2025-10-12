@@ -6,8 +6,6 @@
     { modulesPath, ... }:
     {
 
-      time.timeZone = "Europ/Paris";
-
       imports = [
         # include this once instead of doing in every host.
         (modulesPath + "/installer/scan/not-detected.nix")

@@ -3,6 +3,8 @@ let
   flake.modules.homeManager.henri.imports = [
     anywhere
     linux
+    communication
+    media-players
   ];
 
   linux =
@@ -36,6 +38,26 @@ let
         mimeType = [ "text/english" "text/plain" "text/x-makefile" "text/x-c++hdr" "text/x-c++src" "text/x-chdr" "text/x-csrc" "text/x-java" "text/x-moc" "text/x-pascal" "text/x-tcl" "text/x-tex" "application/x-shellscript" "text/x-c" "text/x-c++" ];
       };
 
+    };
+
+  communication =
+    { lib, pkgs, ... }:
+    {
+      home.packages = [
+        pkgs.obsidian
+        pkgs.discord
+        pkgs.signal-desktop
+        pkgs.whatsapp-for-linux
+        pkgs.zoom-us
+      ];
+    };
+
+  media-players =
+    { lib, pkgs, ... }:
+    {
+      home.packages = [
+        pkgs.feishin # subsonic client ( ie to listen from funkwhale or navidrome services )
+      ];
     };
 
   anywhere =

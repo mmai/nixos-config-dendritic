@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 let
   flake.modules.nixos.henri.imports = [
     user
@@ -41,11 +41,36 @@ let
     {
       # home-manager.backupFileExtension = "backup";
 
-      fonts.packages = with pkgs.nerd-fonts; [
-        victor-mono
-        jetbrains-mono
-        inconsolata
-      ];
+      #FONTS
+      #  nerdfonts for dev symbols in text editors
+      #  noto-fonts-cjk for chinese characters
+      fonts = {
+        # permet de lister les fonts dans /nix/var/nix/profiles/system/sw/share/X11/fonts : 
+        # cd /nix/var/nix/profiles/system/sw/share/X11/fonts
+        # fc-query MesloLGSNerdFontMono-Regular.ttf | grep 'family:'
+        fontDir.enable = true;
+
+        packages = with pkgs; [
+          victor-mono
+          dejavu_fonts
+          meslo-lgs-nf
+          fantasque-sans-mono # `a tester
+          powerline-fonts
+          nerd-fonts.dejavu-sans-mono
+          nerd-fonts.victor-mono
+          noto-fonts
+          noto-fonts-extra
+          noto-fonts-cjk-sans
+          noto-fonts-emoji
+        ];
+
+        fontconfig.defaultFonts = {
+          # monospace = [ "DejaVuSansMono Nerd Font" ];
+          monospace = [ "MesloLGS Nerd Font Mono" ]; # font recommended by powerlevel10k zsh prompt. 
+        };
+      };
+
+
 
       users.users.henri = {
         description = "henri";

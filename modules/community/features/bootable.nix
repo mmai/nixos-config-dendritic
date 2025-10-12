@@ -6,6 +6,9 @@
       # Bootloader.
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
+      boot.kernel.sysctl = {
+        "kernel.sysrq" = 1; # Enable Alt+Sysrq+r key (why is it restricted by default ?) to recover from freezed X sessions
+      };
       powerManagement.enable = true;
 
       # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -17,17 +20,8 @@
       # Enable networking
       networking.networkmanager.enable = true;
 
-      # Select internationalisation properties.
-      i18n.defaultLocale = "en_US.UTF-8";
-
       # Enable the X11 windowing system.
       services.xserver.enable = true;
-
-      # Configure keymap in X11
-      services.xserver.xkb = {
-        layout = "us";
-        variant = "";
-      };
 
       # Enable CUPS to print documents.
       # services.printing.enable = true;
