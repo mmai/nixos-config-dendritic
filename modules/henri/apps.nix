@@ -44,11 +44,11 @@ let
     { lib, pkgs, ... }:
     {
       home.packages = [
-        pkgs.obsidian
-        pkgs.discord
+        pkgs.obsidian # unfree
+        pkgs.discord # unfree
         pkgs.signal-desktop
         pkgs.whatsapp-for-linux
-        pkgs.zoom-us
+        pkgs.zoom-us # unfree
       ];
     };
 

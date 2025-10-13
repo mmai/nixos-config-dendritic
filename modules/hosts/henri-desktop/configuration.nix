@@ -5,19 +5,20 @@
 #
 ###############################################################
 
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 let
   flake.modules.nixos.henri-desktop.imports = with inputs.self.modules.nixos; [
     kvm-intel
+    henri
+    home_network
+
     henri-desktop-unfree
     nvidia
-    henri
     gnome-desktop
     desktop
     coding
     leisure
     printing
-    home_network
     sync-notes
     msmtp # mailtrap
   ];
@@ -25,6 +26,9 @@ let
   henri-desktop-unfree = inputs.self.lib.unfree-module [
     "nvidia-x11"
     "nvidia-settings"
+    "steam"
+    "steam-unwrapped"
+    "teamviewer"
   ];
 
   home_network = {
@@ -53,7 +57,7 @@ let
     };
   };
 
-  msmtp = {
+  msmtp = { pkgs, ... }: {
     environment.etc =
       let msmtprc = pkgs.writeText "msmtprc"
         ''
@@ -73,7 +77,6 @@ let
         "msmtprc".source = msmtprc;
       };
   };
-
 in
 {
   inherit flake;

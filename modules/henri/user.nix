@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 let
   flake.modules.nixos.henri.imports = [
     user
@@ -33,7 +33,7 @@ let
       ];
     };
 
-    packages = [ pkgs.home-manager pkgs.qmk pkgs.gcc-arm-embedded pkgs.dfu-util ];
+    # packages = [ pkgs.home-manager pkgs.qmk pkgs.gcc-arm-embedded pkgs.dfu-util ];
   };
 
   user =
@@ -70,7 +70,7 @@ let
         };
       };
 
-
+      programs.zsh.enable = true;
 
       users.users.henri = {
         description = "henri";

@@ -1,7 +1,6 @@
-{ lib, pkgs, ... }:
 {
   flake.modules.nixos.locale =
-    { modulesPath, ... }:
+    { lib, pkgs, modulesPath, ... }:
     {
       time.timeZone = lib.mkDefault "Europe/Paris";
 
