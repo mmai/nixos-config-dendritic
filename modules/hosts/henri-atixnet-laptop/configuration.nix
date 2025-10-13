@@ -7,7 +7,7 @@
 
 { inputs, pkgs, ... }:
 let
-  flake.modules.nixos.henri-desktop.imports = with inputs.self.modules.nixos; [
+  flake.modules.nixos.henri-atixnet-laptop.imports = with inputs.self.modules.nixos; [
     kvm-intel
     henri-atixnet-laptop-unfree
     # nvidia
@@ -22,6 +22,9 @@ let
   ];
 
   henri-atixnet-laptop-unfree = inputs.self.lib.unfree-module [
+    "nvidia-x11"
+    "nvidia-settings"
+    "teamviewer"
   ];
 
   msmtp = {

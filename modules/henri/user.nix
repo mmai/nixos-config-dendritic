@@ -74,7 +74,6 @@ let
 
       users.users.henri = {
         description = "henri";
-        shell = pkgs.zsh;
       };
     };
 in
