@@ -1,2 +1,4 @@
+update:
+  nix flake update
 rebuild:
-  nix run path:.#os-rebuild -- $(hostname) switch
+  sudo nix run path:.#os-rebuild -- $(hostname) switch
