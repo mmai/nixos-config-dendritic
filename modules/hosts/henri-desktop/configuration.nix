@@ -7,21 +7,24 @@
 
 { inputs, ... }:
 let
-  flake.modules.nixos.henri-desktop.imports = with inputs.self.modules.nixos; [
-    kvm-intel
-    henri
-    home_network
+  flake.modules.nixos.henri-desktop.imports =
+    [ inputs.nixos-rocksmith.nixosModules.default ] ++ (with inputs.self.modules.nixos; [
+      # with inputs.self.modules.nixos; [
+      kvm-intel
+      henri
+      home_network
 
-    henri-desktop-unfree
-    nvidia
-    gnome-desktop
-    desktop
-    coding
-    leisure
-    printing
-    sync-notes
-    msmtp # mailtrap
-  ];
+      henri-desktop-unfree
+      nvidia
+      gnome-desktop
+      desktop
+      coding
+      leisure
+      printing
+      sync-notes
+      msmtp # mailtrap
+      # ];
+    ]);
 
   henri-desktop-unfree = inputs.self.lib.unfree-module [
     "nvidia-x11"

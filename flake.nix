@@ -43,6 +43,10 @@
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
     };
+    nixos-rocksmith = {
+      url = "github:re1n0/nixos-rocksmith";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
 }

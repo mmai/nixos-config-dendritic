@@ -5,6 +5,7 @@ let
     {
       programs.steam = {
         enable = true;
+        # rocksmithPatch.enable = true;
         # à utiliser si problème de résolution sur un jeu : `gamescope %command%` 
         gamescopeSession.enable = true;
       };
