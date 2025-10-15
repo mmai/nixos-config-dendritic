@@ -18,8 +18,9 @@ let
       services.displayManager.autoLogin.user = "henri";
     };
 
-  linux = {
+  linux = { pkgs, ... }: {
     users.users.henri = {
+      shell = pkgs.zsh; # default shell
       isNormalUser = true;
       extraGroups = [
         "networkmanager"
