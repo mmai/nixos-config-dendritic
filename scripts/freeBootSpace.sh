@@ -4,7 +4,8 @@ set -e
 # echo " > nix-collect-garbage -d"
 # nix-collect-garbage -d
 
-KEEP=2
+KEEP=1
+# KEEP=2
 
 echo " > Remove old kernels from /boot/EFI/nixos/"
 
@@ -36,7 +37,7 @@ for file in "${initrds[@]}"; do
 done
 
 echo " > Delete old nixos generations"
-sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +2
+sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +$KEEP
 
 echo " > Rebuild system"
 # sudo nixos-rebuild switch

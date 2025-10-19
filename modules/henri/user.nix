@@ -2,8 +2,7 @@
 let
   flake.modules.nixos.henri.imports = [
     user
-    linux
-    autologin
+    linuxUser
     home
   ];
 
@@ -11,14 +10,7 @@ let
     inputs.self.homeModules.henri
   ];
 
-  autologin =
-    { config, lib, ... }:
-    lib.mkIf config.services.displayManager.enable {
-      services.displayManager.autoLogin.enable = true;
-      services.displayManager.autoLogin.user = "henri";
-    };
-
-  linux = { pkgs, ... }: {
+  linuxUser = { pkgs, ... }: {
     users.users.henri = {
       shell = pkgs.zsh; # default shell
       isNormalUser = true;

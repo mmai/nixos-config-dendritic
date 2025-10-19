@@ -1,7 +1,7 @@
 #############################################################
 #
 #  Henri Desktop
-#  NixOS running on MSI MS-7A71 - i5-7600K x 4 - NVIDIA GeForce GTX 1070
+#  MSI MS-7A71 - i5-7600K x 4 - NVIDIA GeForce GTX 1070
 #
 ###############################################################
 
@@ -11,18 +11,24 @@ let
     [ inputs.nixos-rocksmith.nixosModules.default ] ++ (with inputs.self.modules.nixos; [
       # with inputs.self.modules.nixos; [
       kvm-intel
-      henri
-      home_network
-
-      henri-desktop-unfree
       nvidia
+      qmk
+      home_network
+      henri
+      autologin
+
       gnome-desktop
       desktop
-      coding
-      leisure
-      printing
+      henri-desktop-unfree
       sync-notes
+      coding
       msmtp # mailtrap
+
+      printing
+      leisure
+      music
+      gaming
+      # rocksmith
       # ];
     ]);
 

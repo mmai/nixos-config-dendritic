@@ -1,7 +1,8 @@
 #############################################################
 #
 #  Henri Atixnet Laptop
-#  LENOVO ThinkPad X1 Carbon G10 Intel Core i5-1235U 14p WUXGA 16Go 256Go SSD M.2 2280 Iris Xe Graphics W10P/W11P
+#  LENOVO ThinkPad X1 Carbon G10 
+#  Intel Core i5-1235U 14p WUXGA 16Go 256Go SSD M.2 2280 Iris Xe Graphics W10P/W11P
 #
 ###############################################################
 

@@ -14,9 +14,6 @@ let
 
       networking.firewall.allowedTCPPorts = [ 8010 ]; # allow streaming to chromecast devices (vlc)
 
-      # Enable widevine on chromium: needed by spotify & netflix
-      # nixpkgs.config.chromium.enableWideVine = true; # broken on 19.03
-
       environment.systemPackages = with pkgs; [
 
         # ---------- the forever quest for a good email client -----------
@@ -43,7 +40,7 @@ let
           commandLineArgs = "--load-media-router-component-extension=1"; # this allows to stream to chromecast devices from the browser
         })
         tor-browser-bundle-bin # TOR browser
-        transmission_4-gtk # transmission (transmission_4-gtk also available)
+        transmission_4-gtk
         hexchat # desktop chat client
         element-desktop # matrix client
 
@@ -57,30 +54,22 @@ let
         inkscape
 
         gitg
+        meld
+
         gparted
         keepassxc
         qtpass # pass gui
-        meld
         filezilla
         # unetbootin # live linux usb creator # not supported on aarch64/rapsberry pi (requires syslinux)
 
         wireshark
         # missing : gpick
 
-        # not used anymore
-        #    kbfs keybase-gui
-
         # gnome apps installed in gnome.nix : alternatives available for other envs ?
         # gnome.cheese # take photos & videos with webcam (launch with sudo ?)
         # gcolor2 # simple color selector
         # gnome.seahorse # to get rid of the "gnome default keyring locked" prompt at startup
       ];
-
-      # Use current path in new terminals
-      # environment.interactiveShellInit = ''
-      #   if [[ "$VTE_VERSION" > 3405 ]];
-      #     then source "${pkgs.gnome3.vte}/etc/profile.d/vte.sh" 
-      #   fi '';
 
     };
 in
