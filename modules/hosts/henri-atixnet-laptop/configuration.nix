@@ -11,6 +11,7 @@ let
   flake.modules.nixos.henri-atixnet-laptop.imports = with inputs.self.modules.nixos; [
     kvm-intel
     henri-atixnet-laptop-unfree
+    kanata
     # nvidia
     henri
     gnome-desktop
