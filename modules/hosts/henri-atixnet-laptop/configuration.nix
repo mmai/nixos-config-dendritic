@@ -28,7 +28,7 @@ let
     "teamviewer"
   ];
 
-  msmtp = {
+  msmtp = { pkgs, ... }: {
     environment.etc =
       let msmtprc = pkgs.writeText "msmtprc"
         ''
