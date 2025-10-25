@@ -11,6 +11,8 @@ let
   ];
 
   linuxUser = { pkgs, ... }: {
+
+    programs.gnupg.agent.enable = true; # needed for pass (error 'no pinentry')
     users.users.henri = {
       shell = pkgs.zsh; # default shell
       isNormalUser = true;
