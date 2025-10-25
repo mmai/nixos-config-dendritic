@@ -8,6 +8,9 @@ let
 
       virtualisation.docker.enable = true;
 
+      # required for lando executable
+      programs.nix-ld.enable = true;
+
       environment.systemPackages =
         let
           php' = pkgs.php.buildEnv {
