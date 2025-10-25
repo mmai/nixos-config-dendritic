@@ -14,6 +14,7 @@ let
       nvidia
       qmk
       home_network
+      with_windows
       henri
       autologin
 
@@ -39,6 +40,13 @@ let
     "steam-unwrapped"
     "teamviewer"
   ];
+
+  with_windows = {
+    boot.loader.grub = {
+      configurationLimit = 90;
+      default = "NixOS - Default";
+    };
+  };
 
   home_network = {
     # local network
