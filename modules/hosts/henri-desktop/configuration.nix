@@ -39,6 +39,7 @@ let
     "steam"
     "steam-unwrapped"
     "teamviewer"
+    "hyperspeedcube"
   ];
 
   with_windows = {
