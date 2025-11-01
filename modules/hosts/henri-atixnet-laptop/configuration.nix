@@ -12,6 +12,7 @@ let
     kvm-intel
     henri-atixnet-laptop-unfree
     kanata
+    app-cli-minimal
     # nvidia
     henri
     gnome-desktop

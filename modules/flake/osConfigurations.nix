@@ -9,6 +9,7 @@ let
   flake.nixosConfigurations = {
     henri-desktop = linux "henri-desktop";
     henri-atixnet-laptop = linux "henri-atixnet-laptop";
+    activitypub = linux "activitypub";
   };
 
 in

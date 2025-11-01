@@ -15,6 +15,7 @@ let
       qmk
       home_network
       with_windows
+      app-cli-minimal
       henri
       autologin
 
@@ -44,6 +45,7 @@ let
 
   with_windows = {
     boot.loader.grub = {
+      # enable = true;
       configurationLimit = 90;
       default = "NixOS - Default";
     };

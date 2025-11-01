@@ -89,7 +89,6 @@ let
         pkgs.zinit # zsh plugin manager
 
         # ---------- applications
-        pkgs.neovim
         pkgs.luajit
         pkgs.fortune # displayed in neovim landpage
         pkgs.xclip # manage clipboard (needed for neovim to not freeze using xsel : https://github.com/neovim/neovim/issues/9402)
@@ -114,7 +113,6 @@ let
         pkgs.tree # used by nnn
         pkgs.eza # replacement for ls with sensible defaults
         pkgs.fd # better find (and used by fzf in vim)
-        pkgs.ripgrep # Faster than grep, ag, ..
 
         # ------------ Common tools
         pkgs.imagemagick
@@ -162,7 +160,6 @@ let
         # ----------- diagnostics
         pkgs.lsof # show open ports, etc.
         pkgs.file # Show file information. Usefull to debug 'zsh: no such file or directory' errors on binaries
-        pkgs.htop
         pkgs.btop
         pkgs.iotop
         pkgs.smartmontools # analyse de disque durs `smartctl /dev/sdb`
