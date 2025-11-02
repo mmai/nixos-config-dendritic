@@ -14,4 +14,4 @@ music-import:
 [group('deploy')]
 music-deploy:
 	rsync -azv ./ {{activitypub_server}}:{{activitypub_os_path}}
-	ssh {{activitypub_server}} -t nix run path:{{activitypub_os_path}}
+	ssh {{activitypub_server}} -t "nix run path:{{activitypub_os_path}}#os-rebuild -- activitypub switch"

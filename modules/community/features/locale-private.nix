@@ -10,12 +10,12 @@
       };
 
       # Chinese input
-      i18n.inputMethod = {
-        type = "ibus";
-        enable = true;
-        # enabled = "ibus";
-        ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
-      };
+      # i18n.inputMethod = {
+      #   type = "ibus";
+      #   enable = true;
+      #   # enabled = "ibus";
+      #   ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
+      # };
 
       services.xserver.xkb = {
         layout = "us,fr";

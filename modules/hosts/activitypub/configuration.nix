@@ -39,8 +39,9 @@ let
   };
 
   hetzner-boot = {
-    boot.loader.grub.enable = true;
-    boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+    # boot.loader.systemd-boot.enable = false;
+    # boot.loader.grub.enable = true;
+    # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
     console.font = "Lat2-Terminus16";
   };
 

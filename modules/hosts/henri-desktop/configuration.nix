@@ -11,6 +11,7 @@ let
     [ inputs.nixos-rocksmith.nixosModules.default ] ++ (with inputs.self.modules.nixos; [
       # with inputs.self.modules.nixos; [
       kvm-intel
+      devices
       nvidia
       qmk
       home_network

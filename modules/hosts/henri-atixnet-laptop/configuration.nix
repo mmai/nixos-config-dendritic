@@ -10,6 +10,7 @@
 let
   flake.modules.nixos.henri-atixnet-laptop.imports = with inputs.self.modules.nixos; [
     kvm-intel
+    devices
     henri-atixnet-laptop-unfree
     kanata
     app-cli-minimal
