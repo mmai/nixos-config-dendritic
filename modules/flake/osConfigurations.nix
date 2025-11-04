@@ -11,6 +11,7 @@ let
     henri-desktop = linux "henri-desktop";
     henri-atixnet-laptop = linux "henri-atixnet-laptop";
     activitypub = linux-grub "activitypub";
+    raspberry = linux-aarch64 "raspberry";
   };
 
 in
