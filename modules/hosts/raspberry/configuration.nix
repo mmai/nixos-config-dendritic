@@ -41,17 +41,29 @@ let
     services.fail2ban.enable = true;
   };
 
+  henri-ssh-keys = [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCVKKqG2/2Vi3KS5PrBIRLZ8m6J4thXCWY2bsuBWHOQ67RSYzEufCD9ygcN0foXEYN5e2+Mqo8BquVbtFLXFsBD5RfMcN93SmP/XjeMI9IbKIikZ8qkpxgnh4XF8e6aRpaCao/hio3X+uY0OWBcwSqveOf26ou5C5fMDFSvDpMRwQTpalT8hsoQC3KiHSuenFrzDkwEscXSioecmkBG/brVEBMyYfUcMOFUWmq9lFmfsDRC4dfS3sAFxthnVhQ8Yl4Lzox5v8uRFpROy4/vHcelbZDsXVl59uQnoJblhoIJob5NWnp33x3vPRz1ycPcGxNSZLUHCBf01f00ueYNU5EB henri@henri-desktop"
+    # laptop
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3TrbolMIPXyP7/kb06hNL5meec5MhAsYLbSb2XFyzToTCduLYRsI+hQhbTO5KmeH6WY72NXJWxEYn+iUWcrG39e6gLjVDIoDXSU6DYRamU3GdnZ3Vj5tNXCDxv7ISXLJWwvL9oAESn73Vb2GLBrrGK7JqIUAdv7ow9YFKL50HmKu9BZqYyfdpqGLNEL2edjGFpsFTDqeDGle0AOsl5Pey0TFPAfG7omV4/wJMHMWhjk+YuLdAZq3L118Q597CCv+RRYdUZWz/pu2sHzrdG0ZudYcS+JHSbQRR00YtqmJRI5JwL3s9v6IqvcL8W5ULNS5z9V0zoQrt69j2Soz4/Fe/ henri@henri-UX31A"
+    # Diskstation (pour backups)
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDsNVOt0BWFlLTTj1I+9UU5lJe/D/dhTQxfQRVArh2dm9mYAyb4xQOZ4W+6Zu49atJdArEHhzbMJ8utyYpHRYhHwVvBSliuVxSFxOxqSfX96teK+hHHs6OQYVOZUVOjISK6GEL9U6NC7l0UrwaApMXWJYfyxHNlV6iudjrECFmfOHBp5biSLhUdMKo7Pqvhe0yBUupi9gf6ba+GuoDtrL0KdZQmUC4Itzs0lNUKbswev5T1NApBqPlXN29jnwC4nQIiYy3dT55xhXuWmkXBdLZChtunLLsnrjIrPJZKOjNTmeSXieYwNxhmK73W+NkDNA1JO85rhVJjfxkakLyyHqnF admin@DiskStation"
+  ];
+
   server-ssh = {
     networking.firewall.allowedTCPPorts = [ 22 ];
     services.openssh.enable = true;
-    users.users.root.openssh.authorizedKeys.keys = [
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCVKKqG2/2Vi3KS5PrBIRLZ8m6J4thXCWY2bsuBWHOQ67RSYzEufCD9ygcN0foXEYN5e2+Mqo8BquVbtFLXFsBD5RfMcN93SmP/XjeMI9IbKIikZ8qkpxgnh4XF8e6aRpaCao/hio3X+uY0OWBcwSqveOf26ou5C5fMDFSvDpMRwQTpalT8hsoQC3KiHSuenFrzDkwEscXSioecmkBG/brVEBMyYfUcMOFUWmq9lFmfsDRC4dfS3sAFxthnVhQ8Yl4Lzox5v8uRFpROy4/vHcelbZDsXVl59uQnoJblhoIJob5NWnp33x3vPRz1ycPcGxNSZLUHCBf01f00ueYNU5EB henri@henri-desktop"
-      # laptop
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3TrbolMIPXyP7/kb06hNL5meec5MhAsYLbSb2XFyzToTCduLYRsI+hQhbTO5KmeH6WY72NXJWxEYn+iUWcrG39e6gLjVDIoDXSU6DYRamU3GdnZ3Vj5tNXCDxv7ISXLJWwvL9oAESn73Vb2GLBrrGK7JqIUAdv7ow9YFKL50HmKu9BZqYyfdpqGLNEL2edjGFpsFTDqeDGle0AOsl5Pey0TFPAfG7omV4/wJMHMWhjk+YuLdAZq3L118Q597CCv+RRYdUZWz/pu2sHzrdG0ZudYcS+JHSbQRR00YtqmJRI5JwL3s9v6IqvcL8W5ULNS5z9V0zoQrt69j2Soz4/Fe/ henri@henri-UX31A"
-      # Diskstation (pour backups)
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDsNVOt0BWFlLTTj1I+9UU5lJe/D/dhTQxfQRVArh2dm9mYAyb4xQOZ4W+6Zu49atJdArEHhzbMJ8utyYpHRYhHwVvBSliuVxSFxOxqSfX96teK+hHHs6OQYVOZUVOjISK6GEL9U6NC7l0UrwaApMXWJYfyxHNlV6iudjrECFmfOHBp5biSLhUdMKo7Pqvhe0yBUupi9gf6ba+GuoDtrL0KdZQmUC4Itzs0lNUKbswev5T1NApBqPlXN29jnwC4nQIiYy3dT55xhXuWmkXBdLZChtunLLsnrjIrPJZKOjNTmeSXieYwNxhmK73W+NkDNA1JO85rhVJjfxkakLyyHqnF admin@DiskStation"
-    ];
+    users.users.root.openssh.authorizedKeys.keys = henri-ssh-keys;
 
+    # Add your username and ssh key
+    users.users.henri = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+      openssh.authorizedKeys.keys = henri-ssh-keys;
+    };
+
+    # Our user doesn't have a password, so we let them
+    # do sudo without one
+    security.sudo.wheelNeedsPassword = false;
   };
 
   navidrome = {

@@ -8,6 +8,9 @@ let
 
       virtualisation.docker.enable = true;
 
+      # to build raspberry-pi nixos system locally
+      boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
       # required for lando executable
       programs.nix-ld.enable = true;
 

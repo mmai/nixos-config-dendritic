@@ -4,14 +4,14 @@ let
     wsl
     linux
     linux-grub
-    linux-arm
+    linux-raspberry
     ;
 
   flake.nixosConfigurations = {
     henri-desktop = linux "henri-desktop";
     henri-atixnet-laptop = linux "henri-atixnet-laptop";
     activitypub = linux-grub "activitypub";
-    raspberry = linux-arm "raspberry";
+    raspberry = linux-raspberry "raspberry";
   };
 
 in

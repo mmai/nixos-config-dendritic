@@ -3,14 +3,14 @@
     { lib, modulesPath, pkgs, ... }:
     {
 
-      imports = [
-        # This module installs the firmware
-        (modulesPath + "/installer/sd-card/sd-image-aarch64.nix")
-      ];
+      # imports = [
+      #   # This module installs the firmware
+      #   (modulesPath + "/installer/sd-card/sd-image-aarch64.nix")
+      # ];
 
       # These options make the sd card image build faster
-      boot.supportedFilesystems.zfs = lib.mkForce false;
-      sdImage.compressImage = false;
+      # boot.supportedFilesystems.zfs = lib.mkForce false;
+      # sdImage.compressImage = false;
 
       environment.systemPackages = with pkgs; [
         libraspberrypi

@@ -2,7 +2,7 @@
 let
   flake.lib.mk-os = {
     inherit mkNixos mkDarwin;
-    inherit wsl linux linux-grub linux-arm;
+    inherit wsl linux linux-grub linux-arm linux-raspberry;
     inherit darwin darwin-intel;
   };
 
@@ -11,6 +11,7 @@ let
   linux = mkNixos "x86_64-linux" "nixos";
   linux-grub = mkNixos "x86_64-linux" "nixos-grub";
   linux-arm = mkNixos "aarch64-linux" "nixos";
+  linux-raspberry = mkNixos "aarch64-linux" "nixos-grub";
 
   darwin-intel = mkDarwin "x86_64-darwin";
   darwin = mkDarwin "aarch64-darwin";

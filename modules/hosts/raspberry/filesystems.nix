@@ -8,13 +8,12 @@
         options = [ "noatime" ];
       };
 
-    # fileSystems."/nix/store" =
-    #   {
-    #     device = "/nix/store";
-    #     fsType = "none";
-    #     options = [ "bind" ];
-    #   };
-    #
-    # swapDevices = [ ];
+    fileSystems."/media" =
+      {
+        device = "/dev/disk/by-label/sonata";
+        fsType = "ext4";
+        options = [ "noatime" ];
+      };
+
   };
 }

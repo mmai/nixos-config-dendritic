@@ -3,7 +3,8 @@ update:
 rebuild:
   sudo nix run path:.#os-rebuild -- $(hostname) switch
 raspberry:
-  nixos-rebuild switch --flake .#raspberry --target-host raspberry --use-remote-sudo
+  nixos-rebuild switch --flake .#raspberry --target-host raspberry
+  # nixos-rebuild switch --flake .#raspberry --target-host raspberry --sudo --ask-sudo-password
 
 activitypub_server := 'root@music.rhumbs.fr'
 activitypub_local_music_path := '/mnt/diskstation/music/_sorted/'
