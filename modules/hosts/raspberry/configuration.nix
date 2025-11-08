@@ -78,11 +78,10 @@ let
     services.nginx = {
       enable = true;
       clientMaxBodySize = "100m";
-      virtualHosts."raspberry" = {
-        # virtualHosts."music.rhumbs.fr" = {
+      virtualHosts."rasp.rhumbs.fr" = {
         # forceSSL = true;
         forceSSL = false;
-        # enableACME = true;
+        enableACME = true;
         locations."/" = {
           proxyPass = "http://localhost:4533"; # navidrome default listening port
         };
