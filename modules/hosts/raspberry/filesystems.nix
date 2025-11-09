@@ -8,6 +8,8 @@
         options = [ "noatime" ];
       };
 
+    swapDevices = [ ];
+
     fileSystems."/media" =
       {
         device = "/dev/disk/by-label/sonata";

@@ -14,4 +14,16 @@
       boot.loader.grub.enable = true;
       boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
     };
+
+  flake.modules.nixos.bootable-extlinux =
+    { lib, ... }:
+    {
+      # extlinux (for raspberry-pi)
+      # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
+      boot.loader = {
+        grub.enable = false;
+        systemd-boot.enable = false;
+        generic-extlinux-compatible.enable = true;
+      };
+    };
 }

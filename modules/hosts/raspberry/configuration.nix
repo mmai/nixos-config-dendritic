@@ -79,8 +79,7 @@ let
       enable = true;
       clientMaxBodySize = "100m";
       virtualHosts."rasp.rhumbs.fr" = {
-        # forceSSL = true;
-        forceSSL = false;
+        forceSSL = true;
         enableACME = true;
         locations."/" = {
           proxyPass = "http://localhost:4533"; # navidrome default listening port

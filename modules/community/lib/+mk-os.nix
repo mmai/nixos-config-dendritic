@@ -11,7 +11,7 @@ let
   linux = mkNixos "x86_64-linux" "nixos";
   linux-grub = mkNixos "x86_64-linux" "nixos-grub";
   linux-arm = mkNixos "aarch64-linux" "nixos";
-  linux-raspberry = mkNixos "aarch64-linux" "nixos-grub";
+  linux-raspberry = mkNixos "aarch64-linux" "nixos-extlinux";
 
   darwin-intel = mkDarwin "x86_64-darwin";
   darwin = mkDarwin "aarch64-darwin";
