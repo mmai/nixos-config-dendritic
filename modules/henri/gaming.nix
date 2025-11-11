@@ -23,6 +23,7 @@ let
         crawlTiles # some roguelike games
         # superTux
         # leela-zero # go game engine (cmd = leelaz)=> additional steps : curl -O https://zero.sjeng.org/best-network && mv best-network ~/.local/share/leela-zero/
+        hyperspeedcube
       ];
 
       # for steam
