@@ -23,13 +23,21 @@ let
     # printing
     sync-notes
     msmtp # mailtrap
+    custompkgs
   ];
 
   henri-atixnet-laptop-unfree = inputs.self.lib.unfree-module [
     "nvidia-x11"
     "nvidia-settings"
     "teamviewer"
+    "hyperspeedcube"
   ];
+
+  custompkgs = { pkgs, ... }: {
+      environment.systemPackages = with pkgs; [
+        hyperspeedcube
+      ];
+  };
 
   msmtp = { pkgs, ... }: {
     environment.etc =

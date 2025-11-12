@@ -29,6 +29,7 @@
       url = "github:nix-community/home-manager";
     };
     import-tree = {
+      # ok : ?rev=6ebb8cb87987b20264c09296166543fd3761d274
       url = "github:vic/import-tree";
     };
     nixpkgs = {
@@ -41,6 +42,7 @@
       url = "github:nix-systems/default";
     };
     treefmt-nix = {
+      # ok 296ebf0c3668ebceb3b0bfee55298f112b4b5754
       url = "github:numtide/treefmt-nix";
     };
     nixos-rocksmith = {
