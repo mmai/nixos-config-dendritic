@@ -12,6 +12,7 @@ let
     kvm-intel
     devices
     henri-atixnet-laptop-unfree
+    keyboardLafayette
     kanata
     app-cli-minimal
     # nvidia
