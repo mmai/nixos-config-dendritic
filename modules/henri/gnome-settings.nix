@@ -33,9 +33,9 @@ let
       home.sessionVariables.GTK_THEME = "adw-gtk3-dark";
 
       dconf.settings = {
-        "org/nome/desktop/input-sources" = {
+        "org/gnome/desktop/input-sources" = {
           show-all-sources = true;
-          sources = [ (lib.hm.gvariant.mkTuple [ "xkb" "us+intl" ]) (lib.hm.gvariant.mkTuple [ "xkb" "lafayette" ]) ];
+          sources = [ (lib.hm.gvariant.mkTuple [ "xkb" "lafayette" ]) (lib.hm.gvariant.mkTuple [ "xkb" "us+intl" ]) ];
         };
 
         "org/gnome/desktop/wm/keybindings" = {

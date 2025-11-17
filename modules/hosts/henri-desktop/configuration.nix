@@ -14,6 +14,7 @@ let
       devices
       nvidia
       qmk
+      keyboardLafayette
       home_network
       app-cli-minimal
       henri
