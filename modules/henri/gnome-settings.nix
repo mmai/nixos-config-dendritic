@@ -35,7 +35,10 @@ let
       dconf.settings = {
         "org/gnome/desktop/input-sources" = {
           show-all-sources = true;
-          sources = [ (lib.hm.gvariant.mkTuple [ "xkb" "lafayette" ]) (lib.hm.gvariant.mkTuple [ "xkb" "us+intl" ]) ];
+          sources = [
+          (lib.hm.gvariant.mkTuple [ "xkb" "lafayette" ])
+          # (lib.hm.gvariant.mkTuple [ "xkb" "us+intl" ])
+          ];
         };
 
         "org/gnome/desktop/wm/keybindings" = {
