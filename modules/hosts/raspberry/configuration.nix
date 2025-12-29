@@ -16,6 +16,7 @@ let
       app-cli-minimal
 
       navidrome
+      immich
       # activitypub-prometheus
     ]);
 
@@ -86,7 +87,6 @@ let
         };
       };
     };
-
     # http, https
     # for prometheus exporters (node, postgres) navidrome, add :  3021 3022
     networking.firewall.allowedTCPPorts = [ 80 443 ];
@@ -96,6 +96,46 @@ let
       acceptTerms = true;
     };
   };
+
+  immich = let port = 2283; in
+    {
+      users.users.immich.extraGroups = [ "video" "render" ];
+      services.immich = {
+        enable = true;
+        port = port;
+        accelerationDevices = null;
+      };
+      services.nginx = {
+        enable = true;
+        virtualHosts."pictures.rhumbs.fr" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://[::1]:${toString port}";
+            proxyWebsockets = true;
+            recommendedProxySettings = true;
+            extraConfig = ''
+                client_max_body_size 50000M;
+              proxy_read_timeout   600s;
+              proxy_send_timeout   600s;
+              send_timeout         600s;
+            '';
+          };
+        };
+
+      };
+      #       services.borgbackup.jobs."Immich" = {
+      #         paths = config.services.immich.mediaLocation;
+      #         repo = "<path-to-borg-repo>";
+      #         startAt = "Sat 04:00";
+      #         compression = "zstd";
+      #         encryption.mode = "none";
+      #         prune.keep = {
+      #           last = 2;
+      #         };
+      #         };
+    };
+
 
 in
 {
