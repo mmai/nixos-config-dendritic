@@ -97,11 +97,16 @@ let
     };
   };
 
-  immich = let port = 2283; in
+  immich =
+    let
+      port = 2283;
+      mediaLocation = "/var/lib/immich"; # default but set here for reuse in borgbackup (don't know how to reference sevice.immich.mediaLocation from borgbackup config)
+    in
     {
       users.users.immich.extraGroups = [ "video" "render" ];
       services.immich = {
         enable = true;
+        mediaLocation = mediaLocation;
         port = port;
         accelerationDevices = null;
       };
@@ -124,16 +129,18 @@ let
         };
 
       };
-      #       services.borgbackup.jobs."Immich" = {
-      #         paths = config.services.immich.mediaLocation;
-      #         repo = "<path-to-borg-repo>";
-      #         startAt = "Sat 04:00";
-      #         compression = "zstd";
-      #         encryption.mode = "none";
-      #         prune.keep = {
-      #           last = 2;
-      #         };
-      #         };
+      services.borgbackup.jobs."Immich" = {
+        paths = mediaLocation;
+        repo = "ssh://borg@Diskstation/volume1/borgbackups/immich";
+        startAt = "Sat 04:00";
+        compression = "auto,zstd";
+        environment.BORG_RSH = "ssh -i /root/.ssh/id_ed25519";
+        encryption.mode = "none";
+        prune.keep = {
+          last = 2;
+        };
+      };
+
     };
 
 
