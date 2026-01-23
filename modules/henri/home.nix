@@ -20,7 +20,7 @@ let
     {
       home.username = lib.mkDefault "henri";
       home.homeDirectory = lib.mkDefault "/home/henri";
-      home.stateVersion = lib.mkDefault "25.05";
+        home.stateVersion = lib.mkDefault "25.11";
     };
 
 in

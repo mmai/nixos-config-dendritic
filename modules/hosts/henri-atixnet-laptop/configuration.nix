@@ -17,6 +17,8 @@ let
     app-cli-minimal
     # nvidia
     henri
+    autologin
+    server-ssh
     # dankMaterialShell-desktop
     gnome-desktop
     desktop
@@ -27,6 +29,28 @@ let
     msmtp # mailtrap
     custompkgs
   ];
+
+  henri-ssh-keys = [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCVKKqG2/2Vi3KS5PrBIRLZ8m6J4thXCWY2bsuBWHOQ67RSYzEufCD9ygcN0foXEYN5e2+Mqo8BquVbtFLXFsBD5RfMcN93SmP/XjeMI9IbKIikZ8qkpxgnh4XF8e6aRpaCao/hio3X+uY0OWBcwSqveOf26ou5C5fMDFSvDpMRwQTpalT8hsoQC3KiHSuenFrzDkwEscXSioecmkBG/brVEBMyYfUcMOFUWmq9lFmfsDRC4dfS3sAFxthnVhQ8Yl4Lzox5v8uRFpROy4/vHcelbZDsXVl59uQnoJblhoIJob5NWnp33x3vPRz1ycPcGxNSZLUHCBf01f00ueYNU5EB henri@henri-desktop"
+  ];
+
+  server-ssh = {
+    networking.firewall.allowedTCPPorts = [ 22 ];
+    services.openssh.enable = true;
+    users.users.root.openssh.authorizedKeys.keys = henri-ssh-keys;
+
+    # Add your username and ssh key
+    users.users.henri = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+      openssh.authorizedKeys.keys = henri-ssh-keys;
+    };
+
+    # Our user doesn't have a password, so we let them
+    # do sudo without one
+    security.sudo.wheelNeedsPassword = false;
+  };
+
 
   henri-atixnet-laptop-unfree = inputs.self.lib.unfree-module [
     "nvidia-x11"

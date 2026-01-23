@@ -32,6 +32,7 @@ let
 
       home.sessionVariables.GTK_THEME = "adw-gtk3-dark";
 
+      dconf.enable = true;
       dconf.settings = {
         "org/gnome/desktop/input-sources" = {
           show-all-sources = true;

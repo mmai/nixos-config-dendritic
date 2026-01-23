@@ -18,7 +18,8 @@ let
 
         heroic # Native GOG, Epic, and Amazon Games Launcher
         itch # itch.io games manager
-        renpy # play renpy visual novel games
+        # renpy broken  in unstable (2026-01-23) => error: Package ‘python3.12-ecdsa-0.19.1’ in /nix/store/0fss98zylksrdnrqsws3ml39y5lwzvxj-source/pkgs/development/python-modules/ecdsa/default.nix:43 is marked as insecure,
+        # renpy # play renpy visual novel games
         # unnethack # build fails on nixos 25.05 (testé le 2025-02-09)
         crawlTiles # some roguelike games
         # superTux

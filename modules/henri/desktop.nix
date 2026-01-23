@@ -7,6 +7,7 @@ let
 
       networking.firewall.allowedTCPPorts = [ 8010 ]; # allow streaming to chromecast devices (vlc)
 
+      programs.dconf.enable = true;
       environment.systemPackages = with pkgs; [
 
         # ---------- the forever quest for a good email client -----------
