@@ -120,8 +120,8 @@ let
           gettext # i18n
           direnv # auto set environnement when entering directories
           docker-compose
-          gitAndTools.gitflow
-          gitAndTools.diff-so-fancy
+          gitflow
+          diff-so-fancy
           jq
           jless # command line json parsers (jq : queries ; jless : explorer )
           pup # Streaming HTML processor/selector (aka jq for HTML)

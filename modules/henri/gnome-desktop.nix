@@ -20,6 +20,12 @@
         '';
       };
 
+      # Gnome shell extensions with browsers
+      services.gnome.gnome-browser-connector.enable = true;
+      programs.firefox.nativeMessagingHosts.packages = [
+        pkgs.gnome-browser-connector
+      ];
+
       # set defaults apps (especially image viewer so that it is not the last software used which become the default (I look at you Gimp))
       # for a more complete config, see https://src.fedoraproject.org/rpms/shared-mime-info/blob/rawhide/f/mimeapps.list
       environment.etc."xdg/mimeapps.list" = {

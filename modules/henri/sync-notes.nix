@@ -17,7 +17,7 @@ let
       # `git config --bool branch.master.syncNewFiles true`
       systemd.user.services.sync-notes = {
         description = "Synchronize wiki and todo files with git-sync";
-        script = "cd ~/think && ${pkgs.gitAndTools.git-sync}/bin/git-sync";
+        script = "cd ~/think && ${pkgs.git-sync}/bin/git-sync";
         path = [ pkgs.openssh ]; # path to dependencies 
         serviceConfig.Type = "oneshot";
       };

@@ -17,6 +17,7 @@ let
     app-cli-minimal
     # nvidia
     henri
+    # dankMaterialShell-desktop
     gnome-desktop
     desktop
     coding

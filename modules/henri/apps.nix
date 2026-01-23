@@ -22,7 +22,7 @@ let
         pkgs.zoxide # cd
         pkgs.nix-search-cli
         pkgs.nixd # lsp
-        pkgs.nixfmt-rfc-style
+        pkgs.nixfmt
         pkgs.ispell
         pkgs.alacritty
       ];
@@ -47,7 +47,7 @@ let
         pkgs.obsidian # unfree
         pkgs.discord # unfree
         pkgs.signal-desktop
-        pkgs.whatsapp-for-linux
+        pkgs.wasistlos # whatsapp for linux
         pkgs.zoom-us # unfree
       ];
     };
@@ -175,8 +175,8 @@ let
 
         # ------------- coding related
         pkgs.lazygit
-        pkgs.gitAndTools.git-annex # sync large files with git
-        pkgs.gitAndTools.delta # better git diff
+        pkgs.git-annex # sync large files with git
+        pkgs.delta # better git diff
         pkgs.gnumake
         pkgs.just # better make 
         pkgs.tldr # Simplified and community-driven man pages

@@ -3,13 +3,6 @@ let
   flake.modules.nixos.desktop =
     { config, lib, pkgs, stdenv, ... }:
     {
-
-      # Gnome shell extensions with browsers
-      services.gnome.gnome-browser-connector.enable = true;
-      programs.firefox.nativeMessagingHosts.packages = [
-        pkgs.gnome-browser-connector
-      ];
-
       services.teamviewer.enable = true;
 
       networking.firewall.allowedTCPPorts = [ 8010 ]; # allow streaming to chromecast devices (vlc)
@@ -26,7 +19,7 @@ let
         # pour X11
         xorg.xkill
         xdotool # manipulate gui windows from command line 
-        xdragon # drag & drop from command line
+        dragon-drop # drag & drop from command line
 
         alacritty # faster terminal with sane default (and zoomable) ; needs > 4.0
 
@@ -39,7 +32,7 @@ let
         (chromium.override {
           commandLineArgs = "--load-media-router-component-extension=1"; # this allows to stream to chromecast devices from the browser
         })
-        tor-browser-bundle-bin # TOR browser
+        tor-browser
         transmission_4-gtk
         hexchat # desktop chat client
         element-desktop # matrix client
