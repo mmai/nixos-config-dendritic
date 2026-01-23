@@ -41,10 +41,6 @@
     systems = {
       url = "github:nix-systems/default";
     };
-    treefmt-nix = {
-      # ok 296ebf0c3668ebceb3b0bfee55298f112b4b5754
-      url = "github:numtide/treefmt-nix";
-    };
     nixos-rocksmith = {
       url = "github:re1n0/nixos-rocksmith";
       inputs.nixpkgs.follows = "nixpkgs";
