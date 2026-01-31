@@ -18,9 +18,10 @@ let
       home_network
       app-cli-minimal
       henri
-      autologin
+      # autologin
 
-      gnome-desktop
+      # gnome-desktop
+      dankMaterialShell-desktop
       desktop
       henri-desktop-unfree
       sync-notes
