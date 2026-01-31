@@ -12,7 +12,7 @@ let
       # with inputs.self.modules.nixos; [
       kvm-intel
       devices
-      nvidia
+      nvidia580
       qmk
       keyboardLafayette
       home_network
