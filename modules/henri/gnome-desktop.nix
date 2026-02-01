@@ -2,12 +2,12 @@
   flake.modules.nixos.gnome-desktop = { pkgs, ... }:
     {
       # Enable the GNOME Desktop Environment.
-      services.displayManager = {
-        gdm = {
-          enable = true;
-          # wayland = false; # disable wayland in order to allow microsoft teams to share desktop ?
-        };
-      };
+      # services.displayManager = {
+      #   gdm = {
+      #     enable = true;
+      #     # wayland = false; # disable wayland in order to allow microsoft teams to share desktop ?
+      #   };
+      # };
 
       services.desktopManager.gnome = {
         enable = true;

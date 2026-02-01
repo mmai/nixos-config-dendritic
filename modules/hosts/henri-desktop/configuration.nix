@@ -20,7 +20,7 @@ let
       henri
       # autologin
 
-      # gnome-desktop
+      gnome-desktop
       dankMaterialShell-desktop
       desktop
       henri-desktop-unfree
