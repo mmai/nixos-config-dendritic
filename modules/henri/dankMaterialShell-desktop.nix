@@ -9,5 +9,10 @@
         # Sync your user's DankMaterialShell theme with the greeter. You'll probably want this
         # configHome = "/home/henri";
       };
+
+      environment.systemPackages = with pkgs; [
+        # used by niri to run steam & electron apps
+        xwayland-satellite
+      ];
     };
 }
