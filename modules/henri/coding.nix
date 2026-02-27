@@ -82,6 +82,7 @@ let
           gcc
           clang
           clang-tools
+          gdb # to debug core dumps with `coredumpctl debug`
           gnumake
           openssl
           pkg-config # rustup dependencies (cf. https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/rust.section.md)
