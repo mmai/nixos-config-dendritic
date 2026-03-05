@@ -17,9 +17,9 @@ let
     app-cli-minimal
     # nvidia
     henri
-    autologin
+    # autologin
     server-ssh
-    # dankMaterialShell-desktop
+    dankMaterialShell-desktop
     gnome-desktop
     desktop
     coding

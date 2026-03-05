@@ -54,7 +54,6 @@ let
           # guile_3_0
 
           # Node
-          nodePackages.node2nix
           nodejs
           yarn
 
