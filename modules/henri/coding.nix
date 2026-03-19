@@ -11,6 +11,9 @@ let
       # to build raspberry-pi nixos system locally
       boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+      # to enable nixos-container (to test webtarot locally)
+      boot.enableContainers = true;
+
       # required for lando executable
       programs.nix-ld.enable = true;
 

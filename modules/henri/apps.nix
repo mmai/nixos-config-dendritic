@@ -15,6 +15,7 @@ let
         # ---- nix related ----------------
         pkgs.nix-index # search available packages containing files (or paths) : nix-index ; nix-locate -w libstdc++.so.6
         pkgs.nh # nix command helper
+        pkgs.nixos-container # used to test webtarot nix package locally
 
         pkgs.gparted
         pkgs.wl-clipboard
