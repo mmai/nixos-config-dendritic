@@ -41,6 +41,9 @@
     systems = {
       url = "github:nix-systems/default";
     };
+    webtarot = {
+      url = "github:mmai/webtarot";
+    };
     nixos-rocksmith = {
       url = "github:re1n0/nixos-rocksmith";
       inputs.nixpkgs.follows = "nixpkgs";

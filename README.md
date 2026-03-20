@@ -11,6 +11,8 @@ This repository is mmai's NixOS configuration, adapted from <https://github.com/
 - sops (with doc)
 - cachix extras : add yazi, python, cuda (?)
 
+## Secrets
+
 ## Troubleshooting
 
 ### How to know which package reference a broken/insecure one ?
