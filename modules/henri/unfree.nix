@@ -8,6 +8,7 @@ let
     "obsidian"
     "discord"
     "zoom"
+    "slack"
   ];
 in
 {

@@ -50,6 +50,7 @@ let
         pkgs.signal-desktop
         pkgs.wasistlos # whatsapp for linux
         pkgs.zoom-us # unfree
+        pkgs.slack # unfree
       ];
     };
 
