@@ -35,7 +35,7 @@ let
         })
         tor-browser
         transmission_4-gtk
-        hexchat # desktop chat client
+        hexchat # desktop irc client
         element-desktop # matrix client
 
         # Included in gnome3
