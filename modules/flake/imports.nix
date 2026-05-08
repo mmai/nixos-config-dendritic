@@ -9,6 +9,7 @@
   flake-file.inputs = {
     devshell.url = "github:numtide/devshell";
     home-manager.url = "github:nix-community/home-manager";
+    sops-nix.url = "github:Mic92/sops-nix";
     nixos-rocksmith = {
       url = "github:re1n0/nixos-rocksmith";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -1,7 +1,7 @@
 # DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
 # Use `nix run .#write-flake` to regenerate it.
 {
-  description = "Mmaai's Nix Environment";
+  description = "Mmai's Nix Environment";
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
@@ -40,6 +40,9 @@
     };
     systems = {
       url = "github:nix-systems/default";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
     };
     nixos-rocksmith = {
       url = "github:re1n0/nixos-rocksmith";

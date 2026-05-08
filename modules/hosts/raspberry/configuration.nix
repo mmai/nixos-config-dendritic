@@ -6,12 +6,14 @@
 
 { inputs, ... }:
 let
-  secrets = import ./_secrets.nix;
   flake.modules.nixos.raspberry.imports =
-    (with inputs.self.modules.nixos; [
+    [ inputs.sops-nix.nixosModules.sops ] ++ (with inputs.self.modules.nixos; [
+      sops-secrets
       optimize-space
       server-ssh
       server-security
+      server-monitoring
+      # server-smtp
       locale-minimal
       app-cli-minimal
 
@@ -19,6 +21,14 @@ let
       immich
       # activitypub-prometheus
     ]);
+
+  sops-secrets = {
+    sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    sops.defaultSopsFile = ./_secrets/secrets.yaml;
+    sops.secrets."beszel_agent_env" = { };
+    sops.secrets."navidrome_env" = { };
+    sops.secrets."smtp/ovh_pass" = { };
+  };
 
   optimize-space =
     {
@@ -67,14 +77,20 @@ let
     security.sudo.wheelNeedsPassword = false;
   };
 
-  navidrome = {
+  server-monitoring = { config, ... }: {
+    services.beszel.agent = {
+      enable = true;
+      environmentFile = config.sops.secrets."beszel_agent_env".path;
+    };
+  };
+
+  navidrome = { config, ... }: {
     services.navidrome = {
       enable = true;
       settings = {
         MusicFolder = "/media/music";
-        LastFM.ApiKey = secrets.lastFM.navidromeApiKey;
-        LastFM.Secret = secrets.lastFM.navidromeSecret;
       };
+      environmentFile = config.sops.secrets."navidrome_env".path;
     };
     services.nginx = {
       enable = true;
