@@ -3,7 +3,8 @@ let
   flake.modules.nixos.desktop =
     { config, lib, pkgs, stdenv, ... }:
     {
-      services.teamviewer.enable = true;
+      services.teamviewer.enable = true; # 2026-05-05 unstable build fails with "2-teamviewer_15.74.3_amd64.deb is not a valid archive"
+
 
       networking.firewall.allowedTCPPorts = [ 8010 ]; # allow streaming to chromecast devices (vlc)
 
@@ -18,7 +19,7 @@ let
         # mailspring # mail client (custom package) (evolution trop buggé) # trop lourd
 
         # pour X11
-        xorg.xkill
+        xkill
         xdotool # manipulate gui windows from command line 
         dragon-drop # drag & drop from command line
 
@@ -44,7 +45,7 @@ let
         pdfarranger # pour rotation des pages, retailler, etc.
 
         gimp
-        krita
+        # krita # build fails with "line 5: wrapQtApp: command not found" (unstable 2025-05-05)
         inkscape
 
         gitg

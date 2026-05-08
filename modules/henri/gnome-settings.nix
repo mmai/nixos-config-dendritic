@@ -11,10 +11,11 @@ let
           package = pkgs.adwaita-icon-theme;
         };
 
-        theme = {
-          name = "adw-gtk3-dark";
-          package = pkgs.adw-gtk3;
-        };
+        gtk4.theme = null;
+        # theme = {
+        #   name = "adw-gtk3-dark";
+        #   package = pkgs.adw-gtk3;
+        # };
 
         gtk3.extraConfig = {
           Settings = ''
@@ -37,8 +38,8 @@ let
         "org/gnome/desktop/input-sources" = {
           show-all-sources = true;
           sources = [
-          (lib.hm.gvariant.mkTuple [ "xkb" "lafayette" ])
-          # (lib.hm.gvariant.mkTuple [ "xkb" "us+intl" ])
+            (lib.hm.gvariant.mkTuple [ "xkb" "lafayette" ])
+            # (lib.hm.gvariant.mkTuple [ "xkb" "us+intl" ])
           ];
         };
 

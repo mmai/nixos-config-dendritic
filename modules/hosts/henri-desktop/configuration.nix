@@ -39,6 +39,7 @@ let
   henri-desktop-unfree = inputs.self.lib.unfree-module [
     "nvidia-x11"
     "nvidia-settings"
+    "nvidia-kernel-modules"
     "steam"
     "steam-unwrapped"
     "teamviewer"
