@@ -51,7 +51,7 @@ let
           markdownlint-cli2
           mermaid-cli # Generation of diagrams from text in a similar manner as markdown
 
-          nodePackages.prettier
+          prettier
 
           # Scheme
           # guile_3_0

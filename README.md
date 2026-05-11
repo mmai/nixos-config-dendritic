@@ -2,11 +2,17 @@
 
 This repository is mmai's NixOS configuration, adapted from <https://github.com/vic/vix>
 
-## Secrets
+## Howto
 
-age keys and rules in _.sops.yaml_
+Add an import:
 
-edit secrets with `nix run nixpkgs#sops modules/hosts/raspberry/_secrets/secrets.yaml`
+- edit modules/flake/imports.nix
+- regenerate flake.nix with `nix run .#write-flake`
+
+Secrets:
+
+- age keys and rules in _.sops.yaml_
+- edit secrets with `nix run nixpkgs#sops modules/hosts/raspberry/_secrets/secrets.yaml`
 
 ## TODO
 

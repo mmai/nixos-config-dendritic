@@ -48,7 +48,7 @@ let
         pkgs.obsidian # unfree
         pkgs.discord # unfree
         pkgs.signal-desktop
-        pkgs.wasistlos # whatsapp for linux
+        #pkgs.karere # whatsapp for linux
         pkgs.zoom-us # unfree
         pkgs.slack # unfree
       ];

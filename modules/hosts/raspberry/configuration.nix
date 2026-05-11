@@ -19,6 +19,7 @@ let
 
       navidrome
       immich
+      trictrac
       # activitypub-prometheus
     ]);
 
@@ -82,6 +83,24 @@ let
       enable = true;
       environmentFile = config.sops.secrets."beszel_agent_env".path;
     };
+  };
+
+  trictrac = { config, ... }: {
+    imports = [ inputs.trictrac.nixosModule ];
+    nixpkgs.overlays = [ inputs.trictrac.overlay ];
+    services.trictrac = {
+      enable = true;
+      protocol = "https";
+      hostname = "trictrac.rhumbs.fr";
+      smtp = {
+        from = "rhumbs@rhumbs.fr";
+        host = "smtp.mail.ovh.net";
+        port = 465;
+        user = "rhumbs@rhumbs.fr";
+        passwordFile = config.sops.secrets."smtp/ovh_pass".path;
+      };
+    };
+
   };
 
   navidrome = { config, ... }: {

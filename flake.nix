@@ -34,6 +34,7 @@
     };
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixpkgs-unstable";
+      #url = "github:nixos/nixpkgs/nixos-25.11";
     };
     nixpkgs-lib = {
       follows = "nixpkgs";
@@ -44,6 +45,7 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
     };
+    trictrac.url = "github:mmai/trictrac";
     nixos-rocksmith = {
       url = "github:re1n0/nixos-rocksmith";
       inputs.nixpkgs.follows = "nixpkgs";
