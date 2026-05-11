@@ -28,7 +28,7 @@ let
     sops.defaultSopsFile = ./_secrets/secrets.yaml;
     sops.secrets."beszel_agent_env" = { };
     sops.secrets."navidrome_env" = { };
-    sops.secrets."smtp/ovh_pass" = { };
+    sops.secrets."smtp/pass" = { };
   };
 
   optimize-space =
@@ -93,11 +93,10 @@ let
       protocol = "https";
       hostname = "trictrac.rhumbs.fr";
       smtp = {
-        from = "rhumbs@rhumbs.fr";
-        host = "smtp.mail.ovh.net";
-        port = 465;
-        user = "rhumbs@rhumbs.fr";
-        passwordFile = config.sops.secrets."smtp/ovh_pass".path;
+        from = "noreply@trictrac.rhumbs.fr";
+        host = "smtp.resend.com";
+        user = "resend";
+        passwordFile = config.sops.secrets."smtp/pass".path;
       };
     };
 
