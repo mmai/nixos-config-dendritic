@@ -6,6 +6,7 @@
 
 { inputs, ... }:
 let
+  sshPort = 2822;
   flake.modules.nixos.raspberry.imports =
     [ inputs.sops-nix.nixosModules.sops ] ++ (with inputs.self.modules.nixos; [
       sops-secrets
@@ -62,8 +63,13 @@ let
   ];
 
   server-ssh = {
-    networking.firewall.allowedTCPPorts = [ 22 ];
-    services.openssh.enable = true;
+    networking.firewall.allowedTCPPorts = [ sshPort ];
+    services.openssh = {
+      enable = true;
+      listenAddresses = [
+        { addr = "0.0.0.0"; port = sshPort; }
+      ];
+    };
     users.users.root.openssh.authorizedKeys.keys = henri-ssh-keys;
 
     # Add your username and ssh key
