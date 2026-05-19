@@ -99,6 +99,7 @@ let
       protocol = "https";
       hostname = "trictrac.rhumbs.fr";
       smtp = {
+        tls = true;
         from = "noreply@trictrac.rhumbs.fr";
         host = "smtp.resend.com";
         user = "resend";
