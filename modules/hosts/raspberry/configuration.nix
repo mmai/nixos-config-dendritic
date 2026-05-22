@@ -91,7 +91,7 @@ let
     };
   };
 
-  trictrac = { config, ... }: {
+  trictrac = { config, pkgs, ... }: {
     imports = [ inputs.trictrac.nixosModule ];
     nixpkgs.overlays = [ inputs.trictrac.overlay ];
     services.trictrac = {
@@ -110,6 +110,29 @@ let
     environment.systemPackages = [
       pkgs.goaccess # generate web stats from nginx access logs
     ];
+
+    # ----- backups -----
+    services.postgresqlBackup = {
+      enable = true;
+      databases = [ "trictrac" ]; # creates /var/backup/postgresql/trictrac.sql.gz nightly
+    };
+    services.borgbackup.jobs."trictrac" = {
+      paths = [
+        "/var/backup/postgresql/trictrac.sql.gz"
+        "/var/lib/trictrac/GameConfig.json"
+      ];
+      repo = "ssh://borg@Diskstation/volume1/borgbackups/trictrac";
+      startAt = "04:30"; # after postgresqlBackup which runs at 01:15 by default
+      compression = "auto,zstd";
+      environment.BORG_RSH = "ssh -i /root/.ssh/id_ed25519";
+      encryption.mode = "none";
+      prune.keep = {
+        daily = 7;
+        weekly = 4;
+        monthly = 3;
+      };
+    };
+
   };
 
   navidrome = { config, ... }: {
