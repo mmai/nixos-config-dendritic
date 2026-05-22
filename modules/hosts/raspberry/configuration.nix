@@ -107,6 +107,9 @@ let
       };
     };
 
+    environment.systemPackages = [
+      pkgs.goaccess # generate web stats from nginx access logs
+    ];
   };
 
   navidrome = { config, ... }: {
