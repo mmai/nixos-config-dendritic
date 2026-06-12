@@ -102,6 +102,7 @@ let
           zlib
 
           # Python & co.
+          uv
           (python3.withPackages (pypkgs: [
             pypkgs.pygments
             pypkgs.pylint
