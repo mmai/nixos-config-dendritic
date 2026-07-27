@@ -22,6 +22,8 @@ let
       #immich
       trictrac
       # activitypub-prometheus
+      miniflux
+      readeck
     ]);
 
   sops-secrets = {
@@ -30,6 +32,8 @@ let
     sops.secrets."beszel_agent_env" = { };
     sops.secrets."navidrome_env" = { };
     sops.secrets."smtp/pass" = { };
+    sops.secrets."miniflux_admin_credentials" = { };
+    sops.secrets."readeck_env" = { };
   };
 
   optimize-space =
@@ -156,6 +160,57 @@ let
     };
     # http, https
     # for prometheus exporters (node, postgres) navidrome, add :  3021 3022
+    networking.firewall.allowedTCPPorts = [ 80 443 ];
+
+    security.acme = {
+      defaults.email = "henri.bourcereau@gmail.com";
+      acceptTerms = true;
+    };
+  };
+
+  miniflux = { config, ... }: {
+    services.miniflux = {
+      enable = true;
+      adminCredentialsFile = config.sops.secrets."miniflux_admin_credentials".path;
+      config = {
+        BASE_URL = "https://rss.rhumbs.fr";
+      };
+    };
+    services.nginx = {
+      enable = true;
+      virtualHosts."rss.rhumbs.fr" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://localhost:8080"; # miniflux default listening port
+        };
+      };
+    };
+    # http, https
+    networking.firewall.allowedTCPPorts = [ 80 443 ];
+
+    security.acme = {
+      defaults.email = "henri.bourcereau@gmail.com";
+      acceptTerms = true;
+    };
+  };
+
+  readeck = { config, ... }: {
+    services.readeck = {
+      enable = true;
+      environmentFile = config.sops.secrets."readeck_env".path;
+    };
+    services.nginx = {
+      enable = true;
+      virtualHosts."weblinks.rhumbs.fr" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://localhost:8000"; # readeck default listening port
+        };
+      };
+    };
+    # http, https
     networking.firewall.allowedTCPPorts = [ 80 443 ];
 
     security.acme = {
