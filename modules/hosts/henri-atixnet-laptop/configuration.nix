@@ -28,6 +28,7 @@ let
     sync-notes
     msmtp # mailtrap
     custompkgs
+    intel-vaapi
   ];
 
   henri-ssh-keys = [
@@ -63,6 +64,13 @@ let
       environment.systemPackages = with pkgs; [
         hyperspeedcube
       ];
+  };
+
+  # VAAPI driver for the Iris Xe iGPU (needed by e.g. gpu-screen-recorder,
+  # hardware-accelerated video in Firefox/mpv...). Without it, vaInitialize
+  # fails on /dev/dri/renderD128 since no VAAPI driver is available at all.
+  intel-vaapi = { pkgs, ... }: {
+    hardware.graphics.extraPackages = with pkgs; [ intel-media-driver ];
   };
 
   msmtp = { pkgs, ... }: {

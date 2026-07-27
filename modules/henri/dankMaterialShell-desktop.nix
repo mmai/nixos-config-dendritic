@@ -13,6 +13,10 @@
       environment.systemPackages = with pkgs; [
         # used by niri to run steam & electron apps
         xwayland-satellite
+
+        # used by DMS-ScreenCapture_Toolbar screen recorder
+        slurp # Select a region in a Wayland compositor
+        gpu-screen-recorder
       ];
     };
 }

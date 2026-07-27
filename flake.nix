@@ -26,7 +26,7 @@
       url = "github:numtide/devshell";
     };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-26.05";
     };
     import-tree = {
       # ok : ?rev=6ebb8cb87987b20264c09296166543fd3761d274
