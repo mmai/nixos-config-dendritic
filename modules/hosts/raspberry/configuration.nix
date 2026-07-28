@@ -175,6 +175,7 @@ let
       adminCredentialsFile = config.sops.secrets."miniflux_admin_credentials".path;
       config = {
         BASE_URL = "https://rss.rhumbs.fr";
+        LISTEN_ADDR = "localhost:8082";
       };
     };
     services.nginx = {
@@ -183,7 +184,7 @@ let
         forceSSL = true;
         enableACME = true;
         locations."/" = {
-          proxyPass = "http://localhost:8080"; # miniflux default listening port
+          proxyPass = "http://localhost:8082"; # miniflux default listening port
         };
       };
     };
