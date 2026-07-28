@@ -100,7 +100,7 @@ let
     nixpkgs.overlays = [ inputs.trictrac.overlay ];
     services.trictrac = {
       enable = true;
-      apiPort = 8081; # default is 8080, conflicting with miniflux
+      apiPort = 8080; # default
       protocol = "https";
       hostname = "trictrac.rhumbs.fr";
       smtp = {
