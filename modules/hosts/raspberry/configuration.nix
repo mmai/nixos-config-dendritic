@@ -119,8 +119,9 @@ let
     # ----- backups -----
     services.postgresqlBackup = {
       enable = true;
-      databases = [ "trictrac" ]; # creates /var/backup/postgresql/trictrac.sql.gz nightly
+      databases = [ "trictrac" "miniflux" ]; # creates /var/backup/postgresql/trictrac.sql.gz, etc. nightly
     };
+
     services.borgbackup.jobs."trictrac" = {
       paths = [
         "/var/backup/postgresql/trictrac.sql.gz"
@@ -176,6 +177,7 @@ let
       config = {
         BASE_URL = "https://rss.rhumbs.fr";
         LISTEN_ADDR = "localhost:8082";
+        INTEGRATION_ALLOW_PRIVATE_NETWORKS = "1"; # allow calling the readeck integration over localhost
       };
     };
     services.nginx = {
@@ -195,37 +197,75 @@ let
       defaults.email = "henri.bourcereau@gmail.com";
       acceptTerms = true;
     };
+
+    services.borgbackup.jobs."miniflux" = {
+      paths = [
+        "/var/backup/postgresql/miniflux.sql.gz"
+      ];
+      repo = "ssh://borg@Diskstation/volume1/borgbackups/miniflux";
+      startAt = "04:35"; # after postgresqlBackup which runs at 01:15 by default
+      compression = "auto,zstd";
+      environment.BORG_RSH = "ssh -i /root/.ssh/id_ed25519";
+      encryption.mode = "none";
+      prune.keep = {
+        daily = 7;
+        weekly = 4;
+        monthly = 3;
+      };
+    };
+
   };
 
   readeck = { config, ... }:
-  let domain = "weblinks.rhumbs.fr";
-  in
-  {
-    services.readeck = {
-      enable = true;
-      environmentFile = config.sops.secrets."readeck_env".path;
-      settings = {
-        server.base_url = "https://${domain}";
+    let domain = "weblinks.rhumbs.fr";
+    in
+    {
+      services.readeck = {
+        enable = true;
+        environmentFile = config.sops.secrets."readeck_env".path;
+        settings = {
+          server.base_url = "https://${domain}";
+        };
       };
-    };
-    services.nginx = {
-      enable = true;
-      virtualHosts."${domain}" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/" = {
-          proxyPass = "http://localhost:8000"; # readeck default listening port
+      services.nginx = {
+        enable = true;
+        virtualHosts."${domain}" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://localhost:8000"; # readeck default listening port
+          };
+        };
+      };
+      # http, https
+      networking.firewall.allowedTCPPorts = [ 80 443 ];
+      # allow local services like miniflux to access weblinks without being blocked by the LiveBox NAT
+      networking.extraHosts =
+        ''
+          127.0.0.1 ${domain}
+        '';
+
+      security.acme = {
+        defaults.email = "henri.bourcereau@gmail.com";
+        acceptTerms = true;
+      };
+
+      services.borgbackup.jobs."readeck" = {
+        paths = [
+          "/var/lib/readeck/data"
+        ];
+        repo = "ssh://borg@Diskstation/volume1/borgbackups/readeck";
+        startAt = "04:40";
+        compression = "auto,zstd";
+        environment.BORG_RSH = "ssh -i /root/.ssh/id_ed25519";
+        encryption.mode = "none";
+        prune.keep = {
+          daily = 7;
+          weekly = 4;
+          monthly = 3;
         };
       };
     };
-    # http, https
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
-
-    security.acme = {
-      defaults.email = "henri.bourcereau@gmail.com";
-      acceptTerms = true;
-    };
-  };
 
   immich =
     let
