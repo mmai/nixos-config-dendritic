@@ -197,14 +197,20 @@ let
     };
   };
 
-  readeck = { config, ... }: {
+  readeck = { config, ... }:
+  let domain = "weblinks.rhumbs.fr";
+  in
+  {
     services.readeck = {
       enable = true;
       environmentFile = config.sops.secrets."readeck_env".path;
+      settings = {
+        server.base_url = "https://${domain}";
+      };
     };
     services.nginx = {
       enable = true;
-      virtualHosts."weblinks.rhumbs.fr" = {
+      virtualHosts."${domain}" = {
         forceSSL = true;
         enableACME = true;
         locations."/" = {

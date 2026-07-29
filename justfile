@@ -3,9 +3,13 @@ update:
 rebuild:
   sudo nix run path:.#os-rebuild -- $(hostname) switch
 [group('deploy')]
+raspberry-fetch:
+  ssh rasp.rhumbs.fr "systemctl show trictrac-server -p ExecStart -p ExecStartPre --value" | grep -oP '/nix/store/[a-z0-9]{32}-[^ /\"]+' | sort -u | xargs -I{} nix copy --from ssh://rasp.rhumbs.fr:2822 --no-check-sigs {}
+
+[group('deploy')]
 raspberry:
-  nixos-rebuild switch --flake .#raspberry --target-host raspberry --sudo
-  # nixos-rebuild switch --flake .#raspberry --target-host raspberry --sudo --ask-sudo-password
+  just raspberry-fetch
+  nixos-rebuild switch --flake .#raspberry --target-host rasp.rhumbs.fr --sudo
 
 music_server := 'root@raspberry'
 music_local_path := '/mnt/diskstation/music/_sorted/'
