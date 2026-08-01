@@ -23,7 +23,7 @@ let
       trictrac
       # activitypub-prometheus
       miniflux
-      readeck
+      linkding
     ]);
 
   sops-secrets = {
@@ -33,7 +33,7 @@ let
     sops.secrets."navidrome_env" = { };
     sops.secrets."smtp/pass" = { };
     sops.secrets."miniflux_admin_credentials" = { };
-    sops.secrets."readeck_env" = { };
+    sops.secrets."linkding_env" = { };
   };
 
   optimize-space =
@@ -177,7 +177,7 @@ let
       config = {
         BASE_URL = "https://rss.rhumbs.fr";
         LISTEN_ADDR = "localhost:8082";
-        INTEGRATION_ALLOW_PRIVATE_NETWORKS = "1"; # allow calling the readeck integration over localhost
+        INTEGRATION_ALLOW_PRIVATE_NETWORKS = "1"; # allow calling the linkding integration over localhost
       };
     };
     services.nginx = {
@@ -216,15 +216,15 @@ let
 
   };
 
-  readeck = { config, ... }:
-    let domain = "weblinks.rhumbs.fr";
+  linkding = { config, ... }:
+    let domain = "link.rhumbs.fr";
     in
     {
-      services.readeck = {
+      services.linkding = {
         enable = true;
-        environmentFile = config.sops.secrets."readeck_env".path;
+        environmentFile = config.sops.secrets."linkding_env".path;
         settings = {
-          server.base_url = "https://${domain}";
+          LD_CSRF_TRUSTED_ORIGINS = "https://${domain}"; # otherwise login fails behind the nginx reverse proxy
         };
       };
       services.nginx = {
@@ -233,13 +233,13 @@ let
           forceSSL = true;
           enableACME = true;
           locations."/" = {
-            proxyPass = "http://localhost:8000"; # readeck default listening port
+            proxyPass = "http://localhost:9090"; # linkding default listening port
           };
         };
       };
       # http, https
       networking.firewall.allowedTCPPorts = [ 80 443 ];
-      # allow local services like miniflux to access weblinks without being blocked by the LiveBox NAT
+      # allow local services like miniflux to access the service without being blocked by the LiveBox NAT
       networking.extraHosts =
         ''
           127.0.0.1 ${domain}
@@ -250,12 +250,12 @@ let
         acceptTerms = true;
       };
 
-      services.borgbackup.jobs."readeck" = {
+      services.borgbackup.jobs."linkding" = {
         paths = [
-          "/var/lib/readeck/data"
+          "/var/lib/linkding"
         ];
-        repo = "ssh://borg@Diskstation/volume1/borgbackups/readeck";
-        startAt = "04:40";
+        repo = "ssh://borg@Diskstation/volume1/borgbackups/linkding";
+        startAt = "04:45";
         compression = "auto,zstd";
         environment.BORG_RSH = "ssh -i /root/.ssh/id_ed25519";
         encryption.mode = "none";

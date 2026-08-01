@@ -51,7 +51,7 @@ let
     networking.extraHosts =
       ''
         192.168.1.10 home.rhumbs.fr
-        192.168.1.20 rasp.rhumbs.fr pictures.rhumbs.fr trictrac.rhumbs.fr weblinks.rhumbs.fr rss.rhumbs.fr
+        192.168.1.20 rasp.rhumbs.fr pictures.rhumbs.fr trictrac.rhumbs.fr weblinks.rhumbs.fr rss.rhumbs.fr link.rhumbs.fr
       '';
 
     fileSystems."/mnt/diskstation/videos" = {
