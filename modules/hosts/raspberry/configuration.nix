@@ -19,7 +19,7 @@ let
       app-cli-minimal
 
       navidrome
-      #immich
+      immich
       trictrac
       # activitypub-prometheus
       miniflux
