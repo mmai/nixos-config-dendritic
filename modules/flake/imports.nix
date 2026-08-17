@@ -3,7 +3,6 @@
   imports = [
     inputs.devshell.flakeModule
     inputs.home-manager.flakeModules.home-manager
-    # inputs.nixos-rocksmith.nixosModules.default
   ];
 
   flake-file.inputs = {
@@ -12,7 +11,9 @@
     sops-nix.url = "github:Mic92/sops-nix";
     trictrac.url = "github:mmai/trictrac";
     nixos-rocksmith = {
-      url = "github:re1n0/nixos-rocksmith";
+      # "release" branch: PipeASIO-based patch (programs.steam.rocksmithPatch),
+      # cf. https://codeberg.org/nizo/linux-rocksmith/src/branch/main/guides/setup/nixos.md
+      url = "github:re1n0/nixos-rocksmith/release";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

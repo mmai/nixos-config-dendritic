@@ -5,8 +5,7 @@ let
     {
       programs.steam = {
         enable = true;
-        # rocksmithPatch.enable = true; -> ne compile pas
-        # à utiliser si problème de résolution sur un jeu : `gamescope %command%` 
+        # à utiliser si problème de résolution sur un jeu : `gamescope %command%`
         gamescopeSession.enable = true;
       };
       # enhance game perfs : `gamemoderun %command%`

@@ -48,7 +48,7 @@
     };
     trictrac.url = "github:mmai/trictrac";
     nixos-rocksmith = {
-      url = "github:re1n0/nixos-rocksmith";
+      url = "github:re1n0/nixos-rocksmith/release";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

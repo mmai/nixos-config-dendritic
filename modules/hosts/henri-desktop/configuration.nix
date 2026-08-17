@@ -8,7 +8,11 @@
 { inputs, ... }:
 let
   flake.modules.nixos.henri-desktop.imports =
-    [ inputs.nixos-rocksmith.nixosModules.default ] ++ (with inputs.self.modules.nixos; [
+    [
+      inputs.nixos-rocksmith.nixosModules.default
+      # rs-asio (rocksmith) needs the Windows SDK, cf. https://visualstudio.microsoft.com/license-terms/mt644918/
+      { nixpkgs.config.microsoftVisualStudioLicenseAccepted = true; }
+    ] ++ (with inputs.self.modules.nixos; [
       # with inputs.self.modules.nixos; [
       kvm-intel
       devices
@@ -32,7 +36,7 @@ let
       leisure
       music
       gaming
-      # rocksmith
+      rocksmith
       # ];
     ]);
 
@@ -44,6 +48,8 @@ let
     "steam-unwrapped"
     "teamviewer"
     "hyperspeedcube"
+    "win-sdk" # rs-asio (rocksmith), built with the Windows SDK via clang-cl
+    "xwin-fetch-msvc" # win-sdk dependency
   ];
 
   home_network = {
