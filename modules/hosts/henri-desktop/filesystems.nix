@@ -23,5 +23,16 @@
     swapDevices =
       [{ device = "/dev/disk/by-uuid/eb816ea9-30df-4637-84d3-18d78510d77a"; }];
 
+    # Steam library drive: mount deterministically at boot, at the same path
+    # udisks/GNOME would otherwise use, so it's ready before Steam starts
+    # (avoids Steam dropping the library folder when it starts before the
+    # drive gets auto-mounted).
+    fileSystems."/run/media/henri/LexarExt4" =
+      {
+        device = "/dev/disk/by-uuid/4c4e8b2f-30be-4a5e-8968-ac8463293fe7";
+        fsType = "ext4";
+        options = [ "nofail" "x-gvfs-show" ];
+      };
+
   };
 }
